@@ -4,6 +4,7 @@ import es.drachodran.apaw.apicontrollers.*;
 import es.drachodran.apaw.daos.DaoFactory;
 import es.drachodran.apaw.daos.memory.DaoFactoryMemory;
 
+import es.drachodran.apaw.dtos.AgenteDto;
 import es.drachodran.apaw.exceptions.ArgumentNotValidException;
 import es.drachodran.apaw.exceptions.NotFoundException;
 import es.drachodran.apaw.exceptions.RequestInvalidException;
@@ -22,13 +23,14 @@ public class Dispatcher {
 
     private ArtistaApiController artistaApiController = new ArtistaApiController();
 
+    private AgenteApiController agenteApiController = new AgenteApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
         try {
             switch (request.getMethod()) {
                 case POST:
-
+                    this.doPost(request, response);
                     break;
                 case GET:
                     this.doGet(request, response);
@@ -61,7 +63,12 @@ public class Dispatcher {
 
 
     private void doPost(HttpRequest request, HttpResponse response) {
-        }
+        if (request.isEqualsPath(AgenteApiController.AGENTE)) {
+            this.agenteApiController.addAgente(1, (AgenteDto) request.getBody());
+        } else
+            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
+    }
+
 
 
     private void doGet(HttpRequest request, HttpResponse response) {
