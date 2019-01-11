@@ -8,7 +8,7 @@ branches:
 notifications:
   email:
     recipients:
-    - j.bernal@upm.es
+    - cesar.gayo.bravo@alumnos.upm.es
 services:
 - mysql
 script:
