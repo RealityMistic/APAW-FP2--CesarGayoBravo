@@ -1,5 +1,6 @@
 es\drachodran\apaw\daos\memory\AlbumsDaoMemory.class
 es\drachodran\apaw\daos\memory\ArtistaDaoMemory.class
+es\drachodran\apaw\daos\ConciertoDao.class
 es\drachodran\apaw\Dispatcher$1.class
 es\drachodran\apaw\http\Client.class
 es\drachodran\apaw\entities\ArtistaBuilder.class
@@ -8,6 +9,7 @@ es\drachodran\apaw\http\HttpMethod.class
 es\drachodran\apaw\daos\DaoFactory.class
 es\drachodran\apaw\dtos\AlbumDto.class
 es\drachodran\apaw\dtos\ArtistaDto.class
+es\drachodran\apaw\dtos\ConciertoDto.class
 es\drachodran\apaw\entities\Album.class
 es\drachodran\apaw\daos\AlbumsDao.class
 es\drachodran\apaw\daos\ArtistaDao.class
@@ -31,6 +33,9 @@ es\drachodran\apaw\daos\memory\DaoFactoryMemory.class
 es\drachodran\apaw\Dispatcher.class
 es\drachodran\apaw\entities\Artista.class
 es\drachodran\apaw\businesscontrollers\ArtistaBusinessController.class
+es\drachodran\apaw\apicontrollers\CrearConciertoApiController.class
 es\drachodran\apaw\entities\Agente.class
+es\drachodran\apaw\businesscontrollers\ConciertosBusinessController.class
 es\drachodran\apaw\http\HttpRequest$Builder.class
 es\drachodran\apaw\entities\Profesional.class
+es\drachodran\apaw\daos\memory\ConciertoDaoMemory.class
