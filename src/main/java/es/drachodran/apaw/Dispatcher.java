@@ -18,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import java.util.List;
 
 import static es.drachodran.apaw.apicontrollers.ArtistaApiController.ARTISTAS;
+import static es.drachodran.apaw.apicontrollers.ArtistaApiController.DELETEID;
 
 public class Dispatcher {
 
@@ -51,7 +52,7 @@ public class Dispatcher {
 
                     break;
                 case DELETE:
-
+                    this.doDelete(request);
                     break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
@@ -114,7 +115,18 @@ public class Dispatcher {
     }
 
     private void doDelete(HttpRequest request) {
-
+        if (request.getPath().startsWith(ARTISTAS + DELETEID )) {
+            LogManager.getLogger(Dispatcher.class).debug("   entrando por artista deleteById" );
+            if ( artistaApiController
+                    .findById(Integer.parseInt(request.getParams()
+                            .get("deleteId"))) != null )
+            {
+                this.artistaApiController.deleteById(Integer.parseInt(request.getParams().get("deleteId")) );
+            }else {
+                throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath() +
+                        " no contiene un id correcto.");
+            }
+        }
 
     }
 
