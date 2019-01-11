@@ -34,6 +34,8 @@ public class Dispatcher {
 
     private CrearConciertoApiController crearConciertoApiController = new CrearConciertoApiController();
 
+    private PrecioConciertoApiController precioConciertoApiController = new PrecioConciertoApiController();
+
 
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
@@ -49,7 +51,7 @@ public class Dispatcher {
                     this.doPut(request);
                     break;
                 case PATCH:
-
+                    this.doPatch(request);
                     break;
                 case DELETE:
                     this.doDelete(request);
@@ -111,6 +113,19 @@ public class Dispatcher {
     }
 
     private void doPatch(HttpRequest request) {
+        if (request.getPath().startsWith(PrecioConciertoApiController.PRECIOCONCIERTO)) {
+            if (request.getParams().get("idconcierto") != null
+                    && request.getParams().get("nuevoprecio") != null ){
+                this.precioConciertoApiController.patchPrecio(
+                        Integer.parseInt(
+                                request.getParams().get("idconcierto")
+                        ),
+                        Integer.parseInt(
+                                request.getParams().get("nuevoprecio")
+                        )
+                );
+            } else throw new ArgumentNotValidException("Parameters not correct");
+        } else throw new RequestInvalidException("Route not correct for PATCH API");
 
     }
 
