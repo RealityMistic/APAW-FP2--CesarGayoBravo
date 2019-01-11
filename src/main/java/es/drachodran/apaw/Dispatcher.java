@@ -5,6 +5,7 @@ import es.drachodran.apaw.daos.DaoFactory;
 import es.drachodran.apaw.daos.memory.DaoFactoryMemory;
 
 import es.drachodran.apaw.dtos.AgenteDto;
+import es.drachodran.apaw.dtos.AlbumDto;
 import es.drachodran.apaw.exceptions.ArgumentNotValidException;
 import es.drachodran.apaw.exceptions.NotFoundException;
 import es.drachodran.apaw.exceptions.RequestInvalidException;
@@ -12,6 +13,8 @@ import es.drachodran.apaw.http.HttpRequest;
 import es.drachodran.apaw.http.HttpResponse;
 import es.drachodran.apaw.http.HttpStatus;
 import org.apache.logging.log4j.LogManager;
+
+import java.util.List;
 
 import static es.drachodran.apaw.apicontrollers.ArtistaApiController.ARTISTAS;
 
@@ -24,6 +27,8 @@ public class Dispatcher {
     private ArtistaApiController artistaApiController = new ArtistaApiController();
 
     private AgenteApiController agenteApiController = new AgenteApiController();
+
+    private AlbumesArtistaApiController albumesArtistaApiController = new AlbumesArtistaApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
@@ -63,7 +68,9 @@ public class Dispatcher {
 
 
     private void doPost(HttpRequest request, HttpResponse response) {
-        if (request.isEqualsPath(AgenteApiController.AGENTE)) {
+        if (request.isEqualsPath(AlbumesArtistaApiController.ALBUMES)) {
+            response.setBody(albumesArtistaApiController.addAlbumes( 1, (List<AlbumDto>) request.getBody() ) );
+        } else if (request.isEqualsPath(AgenteApiController.AGENTE)) {
             this.agenteApiController.addAgente(1, (AgenteDto) request.getBody());
         } else
             throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
