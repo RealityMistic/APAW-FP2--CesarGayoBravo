@@ -6,6 +6,7 @@ import es.drachodran.apaw.daos.memory.DaoFactoryMemory;
 
 import es.drachodran.apaw.dtos.AgenteDto;
 import es.drachodran.apaw.dtos.AlbumDto;
+import es.drachodran.apaw.dtos.ConciertoDto;
 import es.drachodran.apaw.exceptions.ArgumentNotValidException;
 import es.drachodran.apaw.exceptions.NotFoundException;
 import es.drachodran.apaw.exceptions.RequestInvalidException;
@@ -30,6 +31,9 @@ public class Dispatcher {
 
     private AlbumesArtistaApiController albumesArtistaApiController = new AlbumesArtistaApiController();
 
+    private CrearConciertoApiController crearConciertoApiController = new CrearConciertoApiController();
+
+
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
         try {
@@ -41,7 +45,7 @@ public class Dispatcher {
                     this.doGet(request, response);
                     break;
                 case PUT:
-
+                    this.doPut(request);
                     break;
                 case PATCH:
 
@@ -97,7 +101,12 @@ public class Dispatcher {
     }
 
     private void doPut(HttpRequest request) {
-
+        if (request.isEqualsPath(CrearConciertoApiController.CONCIERTOS )) {
+            this.crearConciertoApiController.create(
+                    (ConciertoDto) request.getBody());
+        } else {
+            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
+        }
     }
 
     private void doPatch(HttpRequest request) {
