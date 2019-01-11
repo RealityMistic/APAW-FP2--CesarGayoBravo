@@ -9,6 +9,8 @@ import java.util.List;
 public class AlbumesArtistaApiController {
     public static final String ALBUMES = "/albumes";
 
+    public static final String LASTALBUM = "/lastalbum";
+
     public AlbumesArtistaApiController(){
 
     }
@@ -22,6 +24,11 @@ public class AlbumesArtistaApiController {
         validate(listaAlbumDto, " Objeto lista de Álbumes ");
         albumesArtistaBusinessController.addAlbumes(idArtista, listaAlbumDto);
         return listaAlbumDto;
+    }
+
+    public AlbumDto findLastAlbum(){
+        AlbumesArtistaBusinessController albumesArtistaBusinessController = new AlbumesArtistaBusinessController();
+        return albumesArtistaBusinessController.findLastAlbum();
     }
 
 

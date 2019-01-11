@@ -98,7 +98,10 @@ public class Dispatcher {
         } else if(request.isEqualsPath(ARTISTAS + ArtistaApiController.NOMBRE)) {
             response.setBody(this.artistaApiController.
                     findByName(request.getParams().get("name")));
-        }  else
+        } else if(request.isEqualsPath(AlbumesArtistaApiController.LASTALBUM))
+        {
+            response.setBody(this.albumesArtistaApiController.findLastAlbum());
+        }else
             throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
 
     }

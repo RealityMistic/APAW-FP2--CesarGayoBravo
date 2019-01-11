@@ -47,7 +47,22 @@ public class AlbumsDaoMemory extends GenericDaoMemory<Album> implements AlbumsDa
         }
        mapFusion.putAll(tempMap);
         map = mapFusion;
+    }
 
+    @Override
+    public Album findLastAlbum(){
+        Album lastAlbum = null;
+        listaAlbums = new ArrayList<Album>();
+        Iterator<Map.Entry<Integer, Album>> it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            listaAlbums.add((Album) it.next().getValue());
+            if (lastAlbum == null
+                    || ((Album) it.next()).getFechaLanzamiento().isAfter(lastAlbum.getFechaLanzamiento()))
+            {
+                lastAlbum= ((Album) it.next().getValue());
+            }
+        }
+        return lastAlbum;
     }
 }
 

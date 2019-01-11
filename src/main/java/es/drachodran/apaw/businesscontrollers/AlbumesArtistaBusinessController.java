@@ -38,13 +38,18 @@ public class AlbumesArtistaBusinessController {
         AlbumsDao albumsDao = DaoFactory.getFactory().getAlbumsDao();
         List<Album> listaAlbumesInsertar = convertListaDtoToAlbums(listaAlbumDto);
         albumsDao.addAlbums(listaAlbumesInsertar);
-     //   System.out.println(listaAlbumesInsertar.get(0).getGeneroMusical());
         ArtistaDao artistaDao = DaoFactory.getFactory().getArtistaDao();
         Artista artista = artistaDao.findArtista(idArtista);
-     //   System.out.println(artista.getNombre());
         artista.setSusAlbumes(listaAlbumesInsertar);
         artistaDao.setArtista(idArtista, artista);
     }
 
+    public AlbumDto findLastAlbum(){
+        AlbumDto albumDto = null;
+        AlbumsDao albumsDao = DaoFactory.getFactory().getAlbumsDao();
+        albumDto = convertAlbumToDto(albumsDao.findLastAlbum());
+
+        return albumDto;
+    }
 
 }
