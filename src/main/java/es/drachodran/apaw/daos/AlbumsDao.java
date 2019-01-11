@@ -7,6 +7,7 @@ import java.util.List;
 public interface AlbumsDao extends GenericDao<Album> {
 
     void addAlbums(List<Album> albumList);
+    Album findLastAlbum();
 }
 
 
