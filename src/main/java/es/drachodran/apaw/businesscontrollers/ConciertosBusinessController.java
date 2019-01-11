@@ -1,6 +1,7 @@
 package es.drachodran.apaw.businesscontrollers;
 
 
+import es.drachodran.apaw.daos.ConciertoDao;
 import es.drachodran.apaw.daos.DaoFactory;
 import es.drachodran.apaw.dtos.ConciertoDto;
 import es.drachodran.apaw.entities.Concierto;
@@ -14,6 +15,13 @@ public class ConciertosBusinessController {
                 conciertoDto.getNombre(),
                 conciertoDto.getPrecio());
         DaoFactory.getFactory().getConciertoDao().save(concierto);
+    }
+
+    public void patchPrecio(int idConcierto, int nuevoPrecio) {
+        ConciertoDao conciertoDao = DaoFactory.getFactory().getConciertoDao();
+        if (nuevoPrecio > conciertoDao.getPrecio(idConcierto)) {
+            conciertoDao.setPrecio(idConcierto, nuevoPrecio);
+        }
     }
 
 }
