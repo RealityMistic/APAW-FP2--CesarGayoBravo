@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-import es.drachodran.apaw.apicontrollers.CrearConciertoApiController;
-=======
 
->>>>>>> issue05-delete-artista
+import es.drachodran.apaw.apicontrollers.CrearConciertoApiController;
+
 import es.drachodran.apaw.dtos.ConciertoDto;
 import es.drachodran.apaw.http.Client;
 import es.drachodran.apaw.http.HttpException;
