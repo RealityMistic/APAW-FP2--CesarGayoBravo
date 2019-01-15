@@ -16,7 +16,7 @@ Rutas:  /artista
         /artisita/{id]  
 Controlador: ArtistaApiController  
 En el primer api se obtiene un objeto ArrayList de ArtistaDto y en el segundo
-se obtiene un objeto correspondiente a la entidad artista segun el ID (int) que se 
+se obtiene un objeto correspondiente a la entidad artista segun el ID (intque se 
 pasa en la ruta URL: /artista/{id}
 
 1. API  
